@@ -1,125 +1,422 @@
+
 # AI Medical Assistant
 
-An AI-powered full-stack medical assistant designed to provide conversational health information using AI, semantic search, and Retrieval-Augmented Generation (RAG).
+An AI-powered full-stack medical assistant designed to provide conversational health information using AI, semantic search, and vector retrieval.
 
-## 🚀 Project Overview
+ # 🚀 Project Overview
 
 The AI Medical Assistant combines a Spring Boot backend, PostgreSQL database, vector search, and locally hosted AI models to build an intelligent conversational healthcare application.
 
-The system is being designed with a scalable architecture that can later support web and mobile clients.
+The project is being developed with a modular architecture that can later support web and mobile clients.
+
+# ✨ Key Features
+
+User registration and authentication
+
+JWT-based authorization
+
+Conversational AI interface
+
+Persistent conversations and messages
+
+AI response generation using Ollama
+
+Medical document storage
+
+Text embeddings for semantic search
+
+PostgreSQL + pgvector vector storage
+
+Vector similarity search
+
+Modular Spring Boot backend
+
+Local AI inference using Ollama
 
 
-## ✨ Key Features
+# 🏗️ Architecture
 
-- User registration and authentication
-- JWT-based authorization
-- Conversational AI interface
-- Persistent conversations and messages
-- AI response generation using Ollama
-- Medical document storage
-- Text embeddings for semantic search
-- PostgreSQL + pgvector vector storage
-- Similarity-based medical information retrieval
-- Retrieval-Augmented Generation (RAG)
-- Modular Spring Boot backend
-- Planned web and Android application support
-
-
-
-
-
-## 🏗️ Architecture
-
-```text
 User
-  ↓
-Web / Android Client
-  ↓
+
+↓
+
+Client Application
+
+↓
+
 Spring Boot REST API
-  ↓
+
+↓
+
 Authentication & Authorization
-  ↓
+
+↓
+
 Conversation / Message Services
-  ↓
+
+↓
+
 AI Service
-  ↓
+
+↓
+
 Ollama
-  ↓
-Embedding + Vector Search
-  ↓
+
+|
+
+├── Llama 3.2
+
+└── Nomic Embed Text
+
+↓
+
+Text Embeddings
+
+↓
+
 PostgreSQL + pgvector
-  ↓
-Relevant Medical Context
-  ↓
-AI Generated Response
 
-## ⚙️ Local Setup
+↓
 
-### Prerequisites
+Vector Similarity Search
 
-Make sure the following are installed:
+↓
 
-- Java 25
-- Maven
-- PostgreSQL
-- Ollama
-- Git
+Relevant Documents
 
 
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-- Backend:** Java, Spring Boot, Spring Security, Spring Data JPA
-- **Database:** PostgreSQL, pgvector
-- **AI:** Ollama, Llama, Nomic Embeddings
-- **API:** REST APIs, JWT Authentication
-- **Tools:** IntelliJ IDEA, Maven, Postman, Git, GitHub
+Language: Java
+
+Backend: Spring Boot
+
+Security: Spring Security, JWT
+
+Database: PostgreSQL
+
+Vector Database: pgvector
+
+AI Runtime: Ollama
+
+LLM: Llama 3.2
+
+Embedding Model: Nomic Embed Text
+
+ORM: Spring Data JPA
+
+API: REST
+
+Build Tool: Maven
+
+Testing/API Tool: Postman
+
+IDE: IntelliJ IDEA
+
+Version Control: Git, GitHub
 
 
+📂 Project Structure
+
+src/main/java/com/medix/ai_medical_as
+│
+├── ai
+│   ├── EmbeddingService.java
+│   └── OllamaAIService.java
+│
+├── controller
+├── dto
+├── entity
+├── repository
+├── security
+└── service
+
+# ⚙️ Local Setup
+
+Prerequisites
+
+Install the following:
+
+Java 25
+
+Maven
+
+PostgreSQL
+
+Ollama
+
+Git
 
 
+## 1. Clone the Repository
 
+git clone https://github.com/Biswaroopkumar11/Triage_-_Afferent-_Simulation-_Platform-TASP-
 
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/ai-medical-assistant.git
 cd ai-medical-assistant
 
+2. Configure PostgreSQL
+
+Use your local PostgreSQL database.
+
+Enable the pgvector extension:
+
+CREATE EXTENSION IF NOT EXISTS vector;
+
+Create:
+
+src/main/resources/application.properties
+
+Use application-example.properties as a template.
+
+Example:
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_database
+
+spring.datasource.username=postgres
+
+spring.datasource.password=your_password
+
+spring.jpa.hibernate.ddl-auto=none
+
+
+> Replace the example database credentials with your local values.
 
 
 
-### 2. Configure PostgreSQL
+Do not commit application.properties to GitHub.
 
-Create a PostgreSQL database for the application.
+3. Configure Ollama
 
-For example:
+Ollama is used to run the AI models locally.
 
-```text
-ai_medical_db
+Pull the required models:
 
-### 3. Configure Ollama
-
-Ollama is used to run the AI language model and generate text embeddings locally.
-
-#### Install Ollama
-
-Install [Ollama](https://ollama.com/) on your system.
-
-#### Download Required Models
-
-```bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
 
+Verify:
+
+ollama list
+
+The application uses the local Ollama server:
+
+http://localhost:11434
+
+Make sure Ollama is running before starting the application.
+
+# 4. Build the Project
+
+Check Java:
+
+java -version
+
+Check Maven:
+
+mvn -version
+
+Build the application:
+
+mvn clean install
+
+# 5. Run the Application
+
+mvn spring-boot:run
+
+The Spring Boot backend runs on:
+
+http://localhost:8085
+
+# 6. Test the APIs
+
+Use Postman to test the REST APIs.
+
+Current functionality includes:
+
+User registration
+
+User authentication
+
+Conversation management
+
+Message management
+
+Medical document management
+
+AI integration
+
+Text embedding generation
+
+Vector similarity search
 
 
-### 4. Build the Project
+# 🔐 Security
 
-Make sure Java and Maven are installed and properly configured.
+Sensitive configuration is excluded from Git.
 
-#### Verify Java
+The following file is kept local:
 
-```bash
-java -versjaion
+src/main/resources/application.properties
+
+The repository contains:
+
+src/main/resources/application-example.properties
+
+as a configuration template.
+
+Never commit:
+
+Database passwords
+
+JWT secrets
+
+API keys
+
+Private credentials
+
+Personal information
+
+Sensitive medical information
+
+
+# 🧠 AI & Vector Search
+
+The application uses Ollama for local AI processing.
+
+The embedding workflow is:
+
+Medical Text
+
+↓
+
+Nomic Embed Text
+
+↓
+
+Vector Embedding
+
+↓
+
+PostgreSQL + pgvector
+
+↓
+
+Cosine Similarity Search
+
+↓
+
+Relevant Medical Documents
+
+
+User queries can also be converted into embeddings and compared against stored document vectors to retrieve semantically relevant information.
+
+# 📌 Project Status
+
+🚧 Actively under development
+
+Completed / Current
+
+Spring Boot backend
+
+User authentication
+
+JWT security
+
+Conversation management
+
+Message management
+
+Ollama integration
+
+LLM integration
+
+Embedding generation
+
+PostgreSQL integration
+
+pgvector integration
+
+Vector similarity search
+
+
+Planned
+
+LangChain4j integration
+
+Complete RAG pipeline
+
+Medical knowledge-base ingestion
+
+Document chunking improvements
+
+Advanced retrieval and context management
+
+Web frontend
+
+Android application
+
+Deployment and cloud infrastructure
+
+
+# 🔮 Future Architecture
+
+The planned RAG architecture will extend the current vector-search implementation:
+
+User Question
+↓
+Embedding Model
+↓
+Vector Search
+↓
+Relevant Medical Documents
+↓
+Context Assembly
+↓
+LLM
+↓
+AI Response
+
+LangChain4j will be evaluated/integrated to simplify the orchestration of the AI, embedding, retrieval, and RAG components.
+
+>⚠️ Disclaimer
+
+This project is intended for educational and software-development purposes.
+
+It is not intended to provide professional medical diagnosis, treatment, or emergency medical advice.
+
+>👨‍💻 Author
+
+Your Name
+
+GitHub: https://github.com/Biswaroopkumar11
+
+
+---
+
+One important point
+
+
+> implementation
+
+Ollama
+
+embeddings
+
+pgvector
+
+vector similarity search
+
+
+from planned
+
+LangChain4j
+
+complete RAG
+
+frontend
+
+Android
+
+deployment
+
+
