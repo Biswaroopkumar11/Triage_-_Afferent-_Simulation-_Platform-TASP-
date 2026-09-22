@@ -1,5 +1,5 @@
 
-# AI Medical Assistant
+# Triage Afferent Simulation Platform(TASP)
 
 An AI-powered full-stack medical assistant designed to provide conversational health information using AI, semantic search, and vector retrieval.
 
@@ -312,9 +312,8 @@ User queries can also be converted into embeddings and compared against stored d
 
 # 📌 Project Status
 
-🚧 Actively under development
 
-Completed / Current
+>Completed / Current
 
 Spring Boot backend
 
@@ -339,7 +338,7 @@ pgvector integration
 Vector similarity search
 
 
-Planned
+>Planned
 
 LangChain4j integration
 
@@ -363,17 +362,29 @@ Deployment and cloud infrastructure
 The planned RAG architecture will extend the current vector-search implementation:
 
 User Question
+
 ↓
+
 Embedding Model
+
 ↓
+
 Vector Search
+
 ↓
+
 Relevant Medical Documents
+
 ↓
+
 Context Assembly
+
 ↓
+
 LLM
+
 ↓
+
 AI Response
 
 LangChain4j will be evaluated/integrated to simplify the orchestration of the AI, embedding, retrieval, and RAG components.
