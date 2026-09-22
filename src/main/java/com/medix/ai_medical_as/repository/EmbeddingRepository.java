@@ -16,20 +16,23 @@ public class EmbeddingRepository {
 
     public void saveEmbedding(Long id, List<Double> embedding) {
 
-        String vectorString = embedding.toString()
-                .replace("[", "[")
-                .replace("]", "]");
+        String vectorString = embedding.toString();
+//                .replace("[", "[")
+//                .replace("]", "]");
 
         String sql = """
                 UPDATE medical_documents
                 SET embedding = ?::vector
                 WHERE id = ?
                 """;
-
-        jdbcTemplate.update(
+        int updatedRows = jdbcTemplate.update(
                 sql,
                 vectorString,
                 id
+        );
+
+        System.out.println(
+                "Embedding rows updated: " + updatedRows
         );
     }
 }

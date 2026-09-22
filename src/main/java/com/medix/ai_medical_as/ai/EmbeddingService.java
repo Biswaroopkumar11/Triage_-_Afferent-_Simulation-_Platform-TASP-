@@ -36,5 +36,17 @@ public class EmbeddingService {
         List<List<Double>> embeddings =
                 (List<List<Double>>) response.get("embeddings");
 
-        return embeddings.get(0);    }
+        if (embeddings == null || embeddings.isEmpty()) {
+            throw new RuntimeException(
+                    "Ollama returned no embeddings"
+            );
+        }
+
+        List<Double> embedding = embeddings.get(0);
+
+        System.out.println(
+                "Embedding dimensions: " + embedding.size()
+        );
+
+        return embedding;   }
 }

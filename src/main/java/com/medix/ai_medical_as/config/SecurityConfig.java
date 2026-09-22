@@ -120,7 +120,10 @@ public class SecurityConfig {
                                 "/api/auth/login",
                                 "/api/embedding",
                                 "/api/documents",
-                                "/api/search"
+                                "/api/search",
+                                "/api/langchain",
+                                "/api/rag-test",
+                                "/api/rag"
                         ).permitAll()
 
                         .requestMatchers(

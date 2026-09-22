@@ -13,7 +13,7 @@ public class MedicalDocument {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    public MedicalDocument() {
+    public MedicalDocument(String chunk, String documentName, int chunkIndex, String source) {
     }
 
     public MedicalDocument(String content) {
