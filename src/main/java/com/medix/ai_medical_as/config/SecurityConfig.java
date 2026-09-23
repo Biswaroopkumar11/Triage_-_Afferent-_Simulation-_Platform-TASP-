@@ -123,7 +123,8 @@ public class SecurityConfig {
                                 "/api/search",
                                 "/api/langchain",
                                 "/api/rag-test",
-                                "/api/rag"
+                                "/api/rag",
+                                "/api/documents/ingest?documentName=dehydration-guide.txt&source=medical-knowledge"
                         ).permitAll()
 
                         .requestMatchers(

@@ -1,28 +1,3 @@
-//package com.medix.ai_medical_as.service;
-//
-//import com.medix.ai_medical_as.entity.MedicalDocument;
-//import com.medix.ai_medical_as.repository.MedicalDocumentRepository;
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//public class MedicalDocumentService {
-//
-//    private final MedicalDocumentRepository repository;
-//
-//    public MedicalDocumentService(
-//            MedicalDocumentRepository repository) {
-//        this.repository = repository;
-//    }
-//
-//    public MedicalDocument saveDocument(String content) {
-//
-//        MedicalDocument document =
-//                new MedicalDocument(content);
-//
-//        return repository.save(document);
-//    }
-//} updated in 3.4.4 or embedding
-
 package com.medix.ai_medical_as.service;
 
 import com.medix.ai_medical_as.ai.EmbeddingService;
@@ -52,17 +27,24 @@ public class MedicalDocumentService {
 
     public MedicalDocument saveDocument(String content) {
 
-        // 1. Save the document
+        // 1. Create document with default metadata
         MedicalDocument document =
-                new MedicalDocument(content);
+                new MedicalDocument(
+                        content,
+                        "manual-document",
+                        0,
+                        "manual"
+                );
 
-        document = documentRepository.save(document);
+        // 2. Save document in PostgreSQL
+        document =
+                documentRepository.save(document);
 
-        // 2. Generate embedding
+        // 3. Generate embedding using Ollama
         List<Double> embedding =
                 embeddingService.generateEmbedding(content);
 
-        // 3. Store embedding in pgvector
+        // 4. Store embedding in pgvector
         embeddingRepository.saveEmbedding(
                 document.getId(),
                 embedding
@@ -71,4 +53,3 @@ public class MedicalDocumentService {
         return document;
     }
 }
-

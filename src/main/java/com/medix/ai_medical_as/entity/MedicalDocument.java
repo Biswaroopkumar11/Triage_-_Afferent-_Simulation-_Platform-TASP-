@@ -13,12 +13,36 @@ public class MedicalDocument {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    public MedicalDocument(String chunk, String documentName, int chunkIndex, String source) {
+    @Column(name = "document_name")
+    private String documentName;
+
+    @Column(name = "chunk_index")
+    private Integer chunkIndex;
+
+    @Column(name = "source")
+    private String source;
+
+
+    // Required by JPA
+    public MedicalDocument() {
     }
 
-    public MedicalDocument(String content) {
+
+    // Constructor for document ingestion
+    public MedicalDocument(
+            String content,
+            String documentName,
+            Integer chunkIndex,
+            String source) {
+
         this.content = content;
+        this.documentName = documentName;
+        this.chunkIndex = chunkIndex;
+        this.source = source;
     }
+
+
+    // Getters
 
     public Long getId() {
         return id;
@@ -28,7 +52,34 @@ public class MedicalDocument {
         return content;
     }
 
+    public String getDocumentName() {
+        return documentName;
+    }
+
+    public Integer getChunkIndex() {
+        return chunkIndex;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+
+    // Setters
+
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName;
+    }
+
+    public void setChunkIndex(Integer chunkIndex) {
+        this.chunkIndex = chunkIndex;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }
